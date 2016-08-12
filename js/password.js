@@ -1,4 +1,5 @@
 var running = false;
+var tasksDone = 0;
 
 $(document).ready(function() {
   $("#btn").click(function() {
@@ -22,6 +23,7 @@ function doItNow(){
   if(!running){
     //If not running already
     running = true;
+    tasksDone = 0;
     //Convert to lower case
     if($("#lower").is(":checked")){
       $("#password").val($("#password").val().toLowerCase());
@@ -74,12 +76,16 @@ function doItNow(){
         }
         //add spacer
         $("#dataBox").append(document.createElement("br"));
+        //Check if all tasks are done
+        tasksDone++;
+        if((blinks == 16 && tasksDone == 15) || (blinks == 1 && tasksDone == 1)){
+          //Mark button as active
+          $("#btn").removeClass("disabled");
+          //Running = false
+          running = false;
+        }
       });
     }
-    //Mark button as active
-    $("#btn").removeClass("disabled");
-    //Running = false
-    running = false;
   }
 }
 

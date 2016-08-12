@@ -39,7 +39,7 @@ if (isset($_GET["password"]) && isset($_GET["blink"])){
   for($i = 0; $i < count($ciphers); $i++){
     $method = $ciphers[$i];
 
-    $dec = exec("echo $blink | openssl $method -base64 -d -k " . escapeshellarg($password). " 2>&1 | base64");
+    $dec = exec("echo $blink | openssl $method -base64 -d -pass pass:" . escapeshellarg($password). " 2>&1 | base64");
 
     $list[$method] = $dec;
 
