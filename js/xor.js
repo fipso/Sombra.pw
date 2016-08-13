@@ -1,13 +1,21 @@
 $(document).ready(function() {
   $("#btn").click(function() {
-    var input = $("#input");
-    var output = $("#output");
-    var keyInput = $("#key");
-
-    output.val(xorDecode(input.val(), keyInput.val()));
-
+    calc();
+  });
+  $('input').keyup(function(event){
+      if(event.keyCode == 13) {
+        calc();
+      }
   });
 });
+
+function calc(){
+  var input = $("#input");
+  var output = $("#output");
+  var keyInput = $("#key");
+
+  output.val(xorDecode(input.val(), keyInput.val()));
+}
 
 function xorDecode(text, key){
   var out="";
